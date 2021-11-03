@@ -1,0 +1,319 @@
+/* CSS Vera Vasconcelos | PROJETO 1 Web Design II | FBAUP | Docente Pedro Amado | outubro 2021 */
+
+/* RESET CSS | (https://meyerweb.com/eric/tools/css/reset/) -------------------------------------------------------------------------------*/ 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+  }
+
+/* Não permitir a seleção de texto com o cursor, de modo a aumentar a experiência interativa | (https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting) */ 
+html, body, div, span, applet, object, iframe,
+* { 
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
+/* Especificações gerais */
+html {
+    background-color: rgb(226, 221, 221);
+    scroll-behavior: smooth; /* Scroll suave */
+}
+
+body {
+    height: 1000px;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+
+/* FONTS ----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Variable font */
+@font-face {
+    font-family: 'Thunder';
+    src: url('fonts/Thunder.ttf') format('truetype-variations');
+    font-display: block;
+    font-weight: 100 900; /* Range do peso suportado pela fonte */
+}
+
+/* Fallback para browsers antigos que não suportam variable fonts */
+@font-face {
+    font-family: 'ThunderStatic';
+    font-weight: normal;
+    src: url('fonts/ThunderStatic.ttf');
+}
+
+/* Static font */
+@font-face {
+    font-family: 'NotoSans-Regular';
+    src: url('fonts/NotoSans-Regular.ttf') format('truetype');
+    font-display: block;
+}
+
+
+/* CURSOR ---------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Elipse difusa que segue o cursor do rato */
+#mouseCircle {
+    pointer-events: none; /* Importante porque o css do cursor default é alterado */
+    position: absolute;
+    width: 9em; /* Diâmetro do círculo */
+    height: 9em; /* Diâmetro do círculo */
+    margin: -60px -100px 0px -75px;
+    border-radius: 70%;
+    filter: blur(3rem); /* Efeito de cor difusa */
+}
+
+
+/* TIPOGRAFIA ----------------------------------------------------------------------------------------------------------------------------*/
+
+/* 6 palavras principais */
+.globalType {
+    line-height: 0.8em;
+    font-size: 9.5vw;
+    font-family: 'Thunder', "ThunderStatic", sans-serif;
+    position: absolute;
+    text-align: left;
+    margin-left: 8%;
+    margin-top: 2%;
+    color: rgba(20,20,20,1);
+    z-index: 99;
+    text-rendering: optimizeSpeed;
+}
+
+/* Frases escondidas */
+p {
+    position: absolute;
+    line-height: 1.1em;
+    font-size: 0.95vw;
+    font-family: 'NotoSans-Regular', sans-serif;
+    z-index: 98;
+    color: rgb(226, 221, 221); /* cor igual ao background */
+}
+
+/* Posicionamento das frases escondidas */
+#um {
+    margin-left: 59%;
+    margin-top: 5%;
+}
+ 
+#dois {
+    margin-left: 80%;
+    margin-top: 12%;
+}
+
+#tres {
+    margin-left: 63%;
+    margin-top: 34%;
+}
+
+#quatro {
+    margin-left: 35%;
+    margin-top: 41%;
+}
+
+#cinco {
+    margin-left: 83%;
+    margin-top: 43%;
+}
+
+
+/* Colophon com informação tipográfica e autoral */
+#colophon {
+    font-family: 'NotoSans-Regular', sans-serif;
+    color: rgba(20,20,20,1);
+    line-height: 1.1em;
+    position: absolute;
+    margin-left: 8%;
+    margin-top: 55%;
+    padding-bottom: 8%;
+}
+
+/* Links escondidos para os sites tipográficos */
+.link {
+    z-index: 98;
+    color: rgb(226, 221, 221);
+    display: inline;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* SETA PARA SCROLLDOWN -------------------------------------------------------------------------------------------------------------------*/
+img {
+    display: block;
+    width: 3vw;
+    position: fixed;
+    margin-top: 44%;
+    margin-left: 2%;
+    z-index: 99;
+}
+  
+
+/* ANIMAÇÕES ------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Underline animation para os links tipográficos inspirada em https://stackoverflow.com/questions/40242378/underline-from-left-to-right-on-hover-in-and-out */
+.link:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 0;
+    bottom: -5px;
+    background: rgba(20,20,20,1);
+    height: 3px;
+    transition-property: width; /* relativo ao eixo x */
+    transition-duration: 700ms; /* duração da animação */
+    transition-timing-function: ease-out;
+}
+  
+.link:hover:after,
+.link:focus:after,
+.link:active:after {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
+/* Diminui o tamanho da seta scrolldown com o hover do rato */
+img:hover{
+    width:3.3vw;;
+}
+
+/* Scrollbar inspirada em https://newbedev.com/css-minimal-scrollbar-css-code-example*/
+html::-webkit-scrollbar {
+    width: 10px;
+  }
+
+html::-webkit-scrollbar-track {
+    background: rgb(179, 177, 177);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgb(136, 136, 136);
+    border-radius: 10px;
+  }
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+    border-radius: 10px;
+  }
+
+html::-webkit-scrollbar-thumb:active {
+    background: rgb(117, 104, 104);
+    border-radius: 10px;
+  }
+
+
+/* MEDIA QUERIES ------------------------------------------------------------------------------------------------------------------------*/
+
+/* Responsividade mobile */
+  @media only screen and (max-width: 400px) {
+
+    body {
+        height: 500px;
+        overflow: hidden; /* Hide horizontal scrollbar */
+    }
+
+    #mouseCircle {
+        width: 6em; /* Diâmetro do círculo */
+        height: 6em; /* Diâmetro do círculo */
+        filter: blur(2rem); /* Efeito de cor difusa */
+    }
+
+    .globalType {
+        line-height: 1.3em;
+        font-size: 18vw;
+        margin-left: 8%;
+        margin-top: 15%;
+    }
+
+    p {
+        font-size: 2.5vw;
+    }
+
+    img {
+    display: none;
+    }
+
+    #colophon {
+    line-height: 1.1em;
+    position: absolute;
+    margin-left: 8%;
+    margin-top: 170%;
+    }
+
+    .link {
+    z-index: 98;
+    color:rgba(20,20,20,1);
+    display: inline;
+    position: relative;
+    overflow: hidden;
+    }
+
+    .link:after {
+    bottom: 0px;
+    background: rgba(20,20,20,1);
+    height: 1px;
+    transition-property: width; /* relativo ao eixo x */
+    transition-duration: 700ms; /* duração da animação */
+    transition-timing-function: ease-out;
+    }
+
+    #um {
+    margin-left: 52%;
+    margin-top: 9%;
+    }
+ 
+    #dois {
+    margin-left: 12%;
+    margin-top: 60%;
+    }
+
+    #tres {
+    margin-left: 38%;
+    margin-top: 81%;
+    }
+
+    #quatro {
+    margin-left: 20%;
+    margin-top: 127%;
+    }
+
+    #cinco {
+    margin-left: 60%;
+    margin-top: 145%;
+    }
+}
+
+
+
